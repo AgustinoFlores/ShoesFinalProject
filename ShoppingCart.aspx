@@ -69,7 +69,12 @@
                     </div>
                 </div>
                 <div>
-                    <asp:Label ID="Label3" runat="server" Font-Bold="True" Font-Names="Raleway" Font-Size="Large" Text="Shipping Address"></asp:Label>
+                    <div>
+                        <asp:Label ID="Label3" runat="server" Font-Bold="True" Font-Names="Raleway" Font-Size="Large" Text="Shipping Address"></asp:Label>
+                    </div>
+                    <div>
+                        <asp:Label ID="Label6" runat="server" Font-Bold="True" Font-Names="Raleway" Font-Size="Large" Text="Payment Method"></asp:Label>
+                    </div>
                 </div>
             
         </div>
