@@ -43,5 +43,25 @@ namespace ShoesProject
 
             return myDT;
         }
+
+        public Boolean login(String username, String password)
+        {
+            myCmd = new SqlCommand();
+            myCmd.Connection = myconn;
+            myCmd.CommandText = "Select * from Users WHERE username = @username AND password = @pword";
+            myCmd.Parameters.Add("@username", SqlDbType.VarChar);
+            myCmd.Parameters["@username"].Value = username;
+            myCmd.Parameters.Add("@pword", SqlDbType.VarChar);
+            myCmd.Parameters["@pword"].Value = password;
+
+            myAdapter = new SqlDataAdapter();
+            myAdapter.SelectCommand = myCmd;
+            DataTable tab = new DataTable();
+
+            myAdapter.Fill(tab);
+
+            //If the row count is greater than 0 then the username and password combo was found!
+            return tab.Rows.Count > 0;
+        }
     }
 }
