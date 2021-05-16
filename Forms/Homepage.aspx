@@ -6,6 +6,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
+    <link href="css/StyleSheet1.css" rel="stylesheet" />
     <title></title>
     <style>
         #topHeader:last-child{
@@ -32,7 +33,7 @@
         <asp:ImageButton ID="CartBtn" runat="server" ImageUrl="~/images/Icon feather-shopping-cart.png" OnClick="CartBtn_Click" />
     </div>
     
-    <asp:Label ID="Categories" runat="server" Font-Bold="True" Font-Names="Roboto" Font-Size="X-Large" Text="SNEAKERS"></asp:Label>
+    <asp:Label ID="Categories" runat="server" Text="SNEAKERS"></asp:Label>
     
         <asp:ListView ID="ListView1" runat="server" DataKeyNames="product_id" DataSourceID="SqlDataSource1" GroupItemCount="5" OnSelectedIndexChanged="ListView1_SelectedIndexChanged">
             <ItemTemplate>
