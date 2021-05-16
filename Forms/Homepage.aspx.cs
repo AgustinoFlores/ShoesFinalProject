@@ -11,7 +11,17 @@ namespace ShoesProject
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Username.Text = Request.QueryString.Get("LoggedUser") + "!";
+            WelcomeMessage.Text = "Welcome " + Request.QueryString.Get("LoggedUser") + "!";
+        }
+
+        protected void CartBtn_Click(object sender, ImageClickEventArgs e)
+        {
+            Response.Redirect("ShoppingCart.aspx");
+        }
+
+        protected void ListView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Response.Redirect("ShoeInfo.aspx?ShoeInfo=" + "HI");
         }
     }
 }

@@ -13,18 +13,55 @@ namespace ShoesProject
         protected void Page_Load(object sender, EventArgs e)
         {
             myDb = new DB();
-            
+
+            if (IsPostBack)
+            {
+                if (!(bool) ViewState["IsSignUp"])
+                {
+                    TitleLabel.Text = "SIGN UP";
+                    Login1.Visible = false;
+                    SignUpForm.Visible = true;
+                }
+                else
+                {
+                    TitleLabel.Text = "SIGN UP";
+                    Login1.Visible = true;
+                    SignUpForm.Visible = false;
+                }
+            }
         }
 
-        protected void Button1_Click(object sender, EventArgs e)
+        protected void Page_Init(object sender, EventArgs e)
         {
-            String username = userBox.Text;
-            String password = pwordBox.Text;
+            ViewState["IsSignUp"] = true;
+        }
 
-            if(myDb.login(username, password))
+        protected void Login1_Authenticate(object sender, AuthenticateEventArgs e)
+        {
+            String username = Login1.UserName;
+            String password = Login1.Password;
+
+            if (myDb.login(username, password))
             {
                 Response.Redirect("Homepage.aspx?LoggedUser=" + username);
             }
+        }
+
+        protected void SignUp_Click(object sender, EventArgs e)
+        {
+            if(ViewState["IsSignUp"] == null)
+            {
+                ViewState["IsSignUp"] = true;
+                Response.Redirect(Request.RawUrl);
+
+            }
+            else
+            {
+                ViewState["IsSignUp"] = (bool) ViewState["IsSignUp"];
+                Response.Redirect(Request.RawUrl);
+            }
+
+            
         }
     }
 }
