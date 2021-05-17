@@ -68,14 +68,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Forms\css\StyleSheet1.css" />
+    <Content Include="assets\css\StyleSheet1.css" />
     <Content Include="databases\Shoes_DB.mdf" />
     <Content Include="databases\Shoes_DB_log.ldf">
       <DependentUpon>Shoes_DB.mdf</DependentUpon>
     </Content>
-    <Content Include="Forms\Homepage.aspx" />
     <Content Include="Forms\Login.aspx" />
-    <Content Include="Forms\ShoeInfo.aspx" />
+    <Content Include="Forms\ShoesInfo.aspx" />
+    <Content Include="Forms\Store.aspx" />
     <Content Include="Global.asax" />
     <Content Include="images\adidas - Copy.png" />
     <Content Include="images\adidas1 - Copy.png" />
@@ -151,12 +151,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Code\DB.cs" />
-    <Compile Include="Forms\Homepage.aspx.cs">
-      <DependentUpon>Homepage.aspx</DependentUpon>
+    <Compile Include="PageLayout.Master.cs">
+      <DependentUpon>PageLayout.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Forms\Homepage.aspx.designer.cs">
-      <DependentUpon>Homepage.aspx</DependentUpon>
+    <Compile Include="PageLayout.Master.designer.cs">
+      <DependentUpon>PageLayout.Master</DependentUpon>
     </Compile>
     <Compile Include="Forms\Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
@@ -165,12 +165,19 @@
     <Compile Include="Forms\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Forms\ShoeInfo.aspx.cs">
-      <DependentUpon>ShoeInfo.aspx</DependentUpon>
+    <Compile Include="Forms\ShoesInfo.aspx.cs">
+      <DependentUpon>ShoesInfo.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Forms\ShoeInfo.aspx.designer.cs">
-      <DependentUpon>ShoeInfo.aspx</DependentUpon>
+    <Compile Include="Forms\ShoesInfo.aspx.designer.cs">
+      <DependentUpon>ShoesInfo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Store.aspx.cs">
+      <DependentUpon>Store.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\Store.aspx.designer.cs">
+      <DependentUpon>Store.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -185,6 +192,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="PageLayout.Master" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
