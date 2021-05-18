@@ -33,6 +33,24 @@ namespace ShoesProject.Forms
         protected global::System.Web.UI.WebControls.Image ShoeImage;
 
         /// <summary>
+        /// AddCart control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button AddCart;
+
+        /// <summary>
+        /// CartMsg control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label CartMsg;
+
+        /// <summary>
         /// ShoeDesc control.
         /// </summary>
         /// <remarks>

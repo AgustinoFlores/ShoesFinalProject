@@ -40,10 +40,12 @@ namespace ShoesProject
         {
             String username = Login1.UserName;
             String password = Login1.Password;
+            String id = myDb.login(username, password);
 
-            if (myDb.login(username, password))
+            if (id != "not found")
             {
-                Response.Redirect("Homepage.aspx?LoggedUser=" + username);
+                Session["LoggedUser"] = id;
+                Response.Redirect("Store.aspx?LoggedUser=" + username);
             }
         }
 

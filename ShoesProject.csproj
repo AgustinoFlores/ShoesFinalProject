@@ -73,6 +73,7 @@
     <Content Include="databases\Shoes_DB_log.ldf">
       <DependentUpon>Shoes_DB.mdf</DependentUpon>
     </Content>
+    <Content Include="Forms\Cart.aspx" />
     <Content Include="Forms\Login.aspx" />
     <Content Include="Forms\ShoesInfo.aspx" />
     <Content Include="Forms\Store.aspx" />
@@ -134,7 +135,6 @@
     <Content Include="images\Products\sperryloafers.png" />
     <Content Include="images\Products\tazewellloafer.png" />
     <Content Include="images\shoe.png" />
-    <Content Include="Forms\ShoppingCart.aspx" />
     <Content Include="images\logo.png" />
     <Content Include="images\th1 - Copy.png" />
     <Content Include="images\th2 - Copy.png" />
@@ -151,6 +151,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Code\DB.cs" />
+    <Compile Include="Forms\Cart.aspx.cs">
+      <DependentUpon>Cart.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\Cart.aspx.designer.cs">
+      <DependentUpon>Cart.aspx</DependentUpon>
+    </Compile>
     <Compile Include="PageLayout.Master.cs">
       <DependentUpon>PageLayout.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -183,13 +190,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Forms\ShoppingCart.aspx.cs">
-      <DependentUpon>ShoppingCart.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Forms\ShoppingCart.aspx.designer.cs">
-      <DependentUpon>ShoppingCart.aspx</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="PageLayout.Master" />

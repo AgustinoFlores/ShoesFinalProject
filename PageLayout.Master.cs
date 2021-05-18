@@ -16,7 +16,12 @@ namespace ShoesProject.App_Code
 
         protected void CartBtn_Click(object sender, ImageClickEventArgs e)
         {
-            Response.Redirect("ShoppingCart.aspx");
+            Response.Redirect("Cart.aspx");
+        }
+
+        protected void HomeBtn_Click(object sender, ImageClickEventArgs e)
+        {
+            Response.Redirect("Store.aspx");
         }
     }
 }
