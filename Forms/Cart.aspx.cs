@@ -13,6 +13,9 @@ namespace ShoesProject.Forms
         DB myDB;
         string[] infoPayment;
 
+        /*
+         * The Page Load method connects to the database and sets up the page itself. It selects all the items from the cart for this specific user. It also gets their shipping address and payment method if there is one. It sets up the client events for displaying payment and shipping address updates. This also calculates the total cost of a person's shopping cart.
+         */
         protected void Page_Load(object sender, EventArgs e)
         {
             myDB = new DB();
@@ -30,6 +33,9 @@ namespace ShoesProject.Forms
             calculateCost();
         }
 
+        /*
+         * used to calculate the total cost of a person's shopping cart. It loops through the ListView that represents the shopping cart and calculates the cost by getting the Price and ProdQuantity, multiplying them together and adding them up. 
+         * */
         protected void calculateCost()
         {
             double cost = 0;
@@ -50,6 +56,9 @@ namespace ShoesProject.Forms
             TotalCost.Text = "$" + cost; 
         }
 
+        /*
+         * this fires whenever a user decides to click the remove button for an item. It completely removes the item from the shopping cart regardless of quantity.
+         * */
         protected void ListView1_ItemCommand(object sender, ListViewCommandEventArgs e)
         {
             if(e.CommandName == "RemoveItem")
@@ -63,6 +72,10 @@ namespace ShoesProject.Forms
             }
         }
 
+        /*
+         * Used to show the shipping address for a user. It calls the getShipAddress method from myDB and either shows a user to add a new shipping address or allows them to edit it.
+         */
+
         protected void viewShipAddress()
         {
             string userid = (string)Session["LoggedUser"];
@@ -73,6 +86,9 @@ namespace ShoesProject.Forms
             AddressBtn.Text = (shipAddress == "not found" || shipAddress == "") ?  "Add Shipping Address" : AddressBtn.Text;
         }
 
+        /*
+         * Used to show the payment method for a user. It calls the getPayment method from myDB and either shows a user to add a new payment method or allows them to edit it.
+         */
         protected void viewPayment()
         {
             string userid = (string)Session["LoggedUser"];
@@ -93,6 +109,9 @@ namespace ShoesProject.Forms
             PaymentInfo.Text = output;
         }
 
+        /*
+         * Fired whenever a person wants to edit their address. Displays the current address in their respective text boxes
+         */
         protected void AddressBtn_Click(object sender, EventArgs e)
         {
             if (ShipAddress.Text == "Add a new shipping address") return;
@@ -105,6 +124,9 @@ namespace ShoesProject.Forms
 
         }
 
+        /*
+         * Fired whenever a user finishes editing their shipping address. It displays the new address in the text box and updates the database as well
+         */
         protected void SubmitAddress_Click(object sender, EventArgs e)
         {
             string addressStr = Address.Text;
@@ -128,6 +150,9 @@ namespace ShoesProject.Forms
             }
         }
 
+        /*
+         * Fired whenever a person wants to edit their payment method. Displays the current parts of a payment method in their respective text boxes
+         */
         protected void Payment_Click(object sender, EventArgs e)
         {
             if (PaymentInfo.Text == "Add a payment method") return;
@@ -137,6 +162,9 @@ namespace ShoesProject.Forms
             CV.Text = infoPayment[2];
         }
 
+        /*
+         * Fired whenever a user finishes editing their payment method. It displays the new payment method in the text box and updates the database as well
+         */
         protected void PaymentSubmit_Click(object sender, EventArgs e)
         {
             string cardNumStr = CardNum.Text;
@@ -159,6 +187,9 @@ namespace ShoesProject.Forms
             }
         }
 
+        /*
+         * Used to simulate a final purchase. It redirects the user to PurchaseConfirm.aspx with the final cost as a datafield
+         */
         protected void PurchaseBtn_Click(object sender, EventArgs e)
         {
             string userid = (string)Session["LoggedUser"];
