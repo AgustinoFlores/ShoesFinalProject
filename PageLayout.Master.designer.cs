@@ -42,15 +42,6 @@ namespace ShoesProject.App_Code
         protected global::System.Web.UI.WebControls.ImageButton HomeBtn;
 
         /// <summary>
-        /// TextBox1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox1;
-
-        /// <summary>
         /// WelcomeMessage control.
         /// </summary>
         /// <remarks>

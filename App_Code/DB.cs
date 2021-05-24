@@ -65,6 +65,34 @@ namespace ShoesProject
             return (tab.Rows.Count > 0) ? tab.Rows[0]["userid"].ToString() : "not found";
         }
 
+        public void createUser(String username, String password, String email, String securityQuestion, String securityAnswer)
+        {
+            myCmd = new SqlCommand();
+            myCmd.Connection = myconn;
+
+            myCmd.CommandText = "SELECT username, password, security_question, security_answer, email FROM Users WHERE 0 = 1";
+            myAdapter = new SqlDataAdapter();
+            myAdapter.SelectCommand = myCmd;
+
+            myCmd = new SqlCommand();
+            myCmd.Connection = myconn;
+            myCmd.CommandText = "INSERT INTO Users(username, password, security_question, security_answer, email) VALUES(@username, @password, @question, @answer, @email)";
+            myCmd.Parameters.AddWithValue("@username", username);
+            myCmd.Parameters.AddWithValue("@password", password);
+            myCmd.Parameters.AddWithValue("@question", securityQuestion);
+            myCmd.Parameters.AddWithValue("@answer", securityAnswer);
+            myCmd.Parameters.AddWithValue("@email", email);
+            myAdapter.InsertCommand = myCmd;
+
+            DataTable tab = new DataTable();
+            myAdapter.Fill(tab);
+
+            object[] newRow = {username, password, securityQuestion, securityAnswer, email };
+            tab.Rows.Add(newRow);
+
+            myAdapter.Update(tab);
+        }
+
         public Dictionary<string, string> getData(String id)
         {
             Dictionary<string, string> info = new Dictionary<string, string>();
@@ -113,22 +141,91 @@ namespace ShoesProject
             return true;
         }
 
-        public Boolean removeFromCart(string cart_id)
+        public string getShipAddress(string id)
         {
             myCmd = new SqlCommand();
             myCmd.Connection = myconn;
-            myCmd.CommandText = "DELETE FROM Cart WHERE cart_id = @cartid";
-            myCmd.Parameters.AddWithValue("@cartid", cart_id);
+            myCmd.CommandText = "Select * from Users WHERE userid = @id";
+            myCmd.Parameters.Add("@id", SqlDbType.Int);
+            myCmd.Parameters["@id"].Value = int.Parse(id);
+
+            myAdapter = new SqlDataAdapter();
+            myAdapter.SelectCommand = myCmd;
+            DataTable tab = new DataTable();
+            myAdapter.Fill(tab);
+
+            return (tab.Rows.Count > 0) ? tab.Rows[0]["shipping_address"].ToString() : "not found";
+        }
+
+        public Boolean updateShipAddress(string id, string addressInfo)
+        {
+            myCmd = new SqlCommand();
+            myCmd.Connection = myconn;
+            myCmd.CommandText = "UPDATE Users SET shipping_address = @address WHERE userid=@id";
+            myCmd.Parameters.AddWithValue("@address", addressInfo);
+            myCmd.Parameters.AddWithValue("@id", id);
 
             try
             {
                 myCmd.ExecuteReader();
-            } catch(Exception e)
+            }catch(Exception e)
             {
                 return false;
             }
 
             return true;
+        }
+
+        public string getPayment(string id)
+        {
+            myCmd = new SqlCommand();
+            myCmd.Connection = myconn;
+            myCmd.CommandText = "Select * from Users WHERE userid = @id";
+            myCmd.Parameters.Add("@id", SqlDbType.Int);
+            myCmd.Parameters["@id"].Value = int.Parse(id);
+
+            myAdapter = new SqlDataAdapter();
+            myAdapter.SelectCommand = myCmd;
+            DataTable tab = new DataTable();
+            myAdapter.Fill(tab);
+
+            return (tab.Rows.Count > 0) ? tab.Rows[0]["payment_method"].ToString() : "not found";
+        }
+
+        public Boolean updatePayment(string id, string method)
+        {
+            myCmd = new SqlCommand();
+            myCmd.Connection = myconn;
+            myCmd.CommandText = "UPDATE Users SET payment_method = @method WHERE userid=@id";
+            myCmd.Parameters.AddWithValue("@method", method);
+            myCmd.Parameters.AddWithValue("@id", id);
+
+            try
+            {
+                myCmd.ExecuteReader();
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        public void updateOrders(string id)
+        {
+            myCmd = new SqlCommand();
+            myCmd.Connection = myconn;
+            myCmd.CommandText = "DELETE FROM Cart WHERE userid = @userid";
+            myCmd.Parameters.AddWithValue("@userid", id);
+
+            try
+            {
+                myCmd.ExecuteReader();
+            }catch(Exception e)
+            {
+                Console.WriteLine(e);
+            }
         }
     }
 }

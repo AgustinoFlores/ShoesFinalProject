@@ -75,6 +75,7 @@
     </Content>
     <Content Include="Forms\Cart.aspx" />
     <Content Include="Forms\Login.aspx" />
+    <Content Include="Forms\PurchaseConfirm.aspx" />
     <Content Include="Forms\ShoesInfo.aspx" />
     <Content Include="Forms\Store.aspx" />
     <Content Include="Global.asax" />
@@ -157,6 +158,13 @@
     </Compile>
     <Compile Include="Forms\Cart.aspx.designer.cs">
       <DependentUpon>Cart.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\PurchaseConfirm.aspx.cs">
+      <DependentUpon>PurchaseConfirm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\PurchaseConfirm.aspx.designer.cs">
+      <DependentUpon>PurchaseConfirm.aspx</DependentUpon>
     </Compile>
     <Compile Include="PageLayout.Master.cs">
       <DependentUpon>PageLayout.Master</DependentUpon>

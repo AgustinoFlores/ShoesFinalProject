@@ -17,8 +17,6 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     
-    <asp:Label ID="Categories" runat="server" Text="SNEAKERS"></asp:Label>
-    
         <asp:ListView ID="ListView1" runat="server" DataKeyNames="product_id" DataSourceID="SqlDataSource1" GroupItemCount="5" OnSelectedIndexChanged="ListView1_SelectedIndexChanged">
             <ItemTemplate>
                 <td runat="server" style="padding:10px;">

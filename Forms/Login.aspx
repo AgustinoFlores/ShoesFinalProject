@@ -5,6 +5,15 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
+    <script type="text/javascript">
+        function swapPage(appear, disappear) {
+            var pageShow = document.getElementById(appear);
+            var pageHide = document.getElementById(disappear);
+
+            pageHide.style.display = "none";
+            pageShow.style.display = "block";
+        }
+    </script>
     <style type="text/css">
         .auto-style1 {float: left; width: 50%;}
         .floatingDiv{float: right; width: 50%; text-align: center}
@@ -21,14 +30,14 @@
                 <br />
                 <asp:Login ID="Login1" runat="server" TitleText="" OnAuthenticate="Login1_Authenticate" Width="636px">
                 </asp:Login>
-                <asp:CreateUserWizard ID="SignUpForm" runat="server" CreateUserButtonText="Submit" Width="636px" Visible="False">
+                <asp:CreateUserWizard ID="SignUpForm" runat="server" CreateUserButtonText="Submit" Width="636px"  QuestionLabelText="Security Question" OnCreatingUser="SignUpForm_CreatingUser" style="display:none">
                     <WizardSteps>
                         <asp:CreateUserWizardStep runat="server" />
                         <asp:CompleteWizardStep runat="server" />
                     </WizardSteps>
                 </asp:CreateUserWizard>
                 <br />
-                <asp:Button ID="SignUp" runat="server" Text="Sign Up!" OnClick="SignUp_Click" />
+                <asp:Button ID="PageSwap" runat="server" Text="Sign Up!" OnClick="PageSwap_Click" />
             </div>
     </form>
 </body>

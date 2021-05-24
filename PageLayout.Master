@@ -13,7 +13,6 @@
     <form id="form1" runat="server">
         <div id="topMenu">
             <asp:ImageButton ID="HomeBtn" runat="server" Height="161px" ImageUrl="~/images/logo.png" Width="210px" OnClick="HomeBtn_Click" />
-            <asp:TextBox ID="TextBox1" runat="server" BorderStyle="Solid"></asp:TextBox>
             <asp:Label ID="WelcomeMessage" runat="server" Font-Names="Roboto"></asp:Label>
             <asp:ImageButton ID="CartBtn" runat="server" ImageUrl="~/images/Icon feather-shopping-cart.png" OnClick="CartBtn_Click" />
         </div>

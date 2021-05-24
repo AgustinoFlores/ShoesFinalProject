@@ -16,24 +16,24 @@ namespace ShoesProject
 
             if (IsPostBack)
             {
-                if (!(bool) ViewState["IsSignUp"])
+                if (ViewState["IsSignUp"] == null || !(bool) ViewState["IsSignUp"])
                 {
                     TitleLabel.Text = "SIGN UP";
-                    Login1.Visible = false;
-                    SignUpForm.Visible = true;
+                    PageSwap.Text = "Sign In!";
+                    Page.ClientScript.RegisterStartupScript(GetType(), "InitSignUp", "swapPage('" + SignUpForm.ClientID + "', '" + Login1.ClientID + "')", true);
                 }
                 else
                 {
-                    TitleLabel.Text = "SIGN UP";
-                    Login1.Visible = true;
-                    SignUpForm.Visible = false;
+                    TitleLabel.Text = "SIGN IN";
+                    PageSwap.Text = "Sign Up!";
+                    Page.ClientScript.RegisterStartupScript(GetType(), "InitSignIn", "swapPage('" + Login1.ClientID + "', '" + SignUpForm.ClientID + "')", true);
                 }
             }
         }
-
+        
         protected void Page_Init(object sender, EventArgs e)
         {
-            ViewState["IsSignUp"] = true;
+            ViewState["IsSignUp"] = null;
         }
 
         protected void Login1_Authenticate(object sender, AuthenticateEventArgs e)
@@ -49,21 +49,29 @@ namespace ShoesProject
             }
         }
 
-        protected void SignUp_Click(object sender, EventArgs e)
+        protected void PageSwap_Click(object sender, EventArgs e)
         {
             if(ViewState["IsSignUp"] == null)
             {
                 ViewState["IsSignUp"] = true;
-                Response.Redirect(Request.RawUrl);
-
             }
             else
             {
-                ViewState["IsSignUp"] = (bool) ViewState["IsSignUp"];
-                Response.Redirect(Request.RawUrl);
+                ViewState["IsSignUp"] = !((bool) ViewState["IsSignUp"]);
             }
 
             
+        }
+
+        protected void SignUpForm_CreatingUser(object sender, LoginCancelEventArgs e)
+        {
+            String username = SignUpForm.UserName;
+            String password = SignUpForm.Password;
+            String email = SignUpForm.Email;
+            String securityQuestion = SignUpForm.Question;
+            String securityAnswer = SignUpForm.Answer;
+
+            myDb.createUser(username, password, email, securityQuestion, securityAnswer);
         }
     }
 }

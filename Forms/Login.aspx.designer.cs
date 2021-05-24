@@ -60,12 +60,12 @@ namespace ShoesProject
         protected global::System.Web.UI.WebControls.CreateUserWizard SignUpForm;
 
         /// <summary>
-        /// SignUp control.
+        /// PageSwap control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button SignUp;
+        protected global::System.Web.UI.WebControls.Button PageSwap;
     }
 }
